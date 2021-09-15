@@ -7,7 +7,8 @@
     color: $mainColor;
     position:fixed; //fixes the top bar to the top no matter what
     top: 0;
-    z-index: 2; //holds the top bar in place when scrolling up and down
+    z-index: 3; //holds the top bar in place when scrolling up and down
+    transition: all 1s ease;
 
     .left{
         display: flex;
@@ -39,11 +40,50 @@
 
     }
 
+    .right{
+        .hamburger{
+            width: 32px;
+            height: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            span{
+                width: 100%;
+                height: 3px;
+                background-color: $mainColor;
+                transform-origin: left;
+                transition: all 2s ease; //create X sign after 2 sec
+            }
+        }
+    }
+
     .wrapper{
         padding: 10px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    &.active{
+        background-color: $mainColor;
+        color:white;
+
+        .hamburger{
+            span{
+                &:first-child{
+                    background-color: white;
+                    transform: rotate(45deg);
+                }
+                &:nth-child(2){
+                    opacity: 0;
+                }
+                &:last-child{
+                    background-color: white;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
     }
 
 }
